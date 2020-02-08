@@ -1,0 +1,2 @@
+C:\Users\DDT\Desktop\BZK\BZK-Proxy-API\obj\Debug\BZKProxyAPI.njsprojAssemblyReference.cache
+C:\Users\DDT\Desktop\BZK\BZK-Proxy-API\bin\Microsoft.NodejsTools.WebRole.dll
