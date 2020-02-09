@@ -39,9 +39,18 @@
     <Content Include="tsconfig.json" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="comm\" />
+    <Folder Include="crypto\" />
+    <Folder Include="crypto\cmc\" />
     <Folder Include="test\" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="comm\SeleniumKit.ts" />
+    <TypeScriptCompile Include="comm\SeleniumUtils.ts" />
+    <TypeScriptCompile Include="ConfigName.ts" />
+    <TypeScriptCompile Include="crypto\cmc\CMCUtils.ts" />
+    <TypeScriptCompile Include="crypto\cmc\CoinMarketCapSpider.ts" />
+    <TypeScriptCompile Include="crypto\cmc\CryptoSymbol.ts" />
     <TypeScriptCompile Include="test\base.test.ts">
       <SubType>Code</SubType>
       <Publish>True</Publish>
