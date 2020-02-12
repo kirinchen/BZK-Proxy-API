@@ -51,6 +51,9 @@
     <TypeScriptCompile Include="crypto\cmc\CMCUtils.ts" />
     <TypeScriptCompile Include="crypto\cmc\CoinMarketCapSpider.ts" />
     <TypeScriptCompile Include="crypto\cmc\CryptoSymbol.ts" />
+    <TypeScriptCompile Include="index.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="test\base.test.ts">
       <SubType>Code</SubType>
       <Publish>True</Publish>

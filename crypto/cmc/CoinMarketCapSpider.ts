@@ -11,10 +11,22 @@ export class CoinMarketCapSpider {
     sk: SeleniumKit;
     symbol: CPSymbol = CPSymbol.BTC;
     private data: Array<CMCQuote> = new Array<CMCQuote>();
+    private startAt: Date = new Date();
+    private endAt: Date = new Date();
 
     constructor(c: Config, cb: CPSymbol) {
         this.symbol = cb;
         this.sk = new SeleniumKit(c);
+    }
+
+    public setStartAt(st: Date): CoinMarketCapSpider {
+        this.startAt = st;
+        return this;
+    }
+
+    public setEndAt(ed: Date): CoinMarketCapSpider {
+        this.endAt = ed;
+        return this;
     }
 
     public async fetch() {
@@ -33,8 +45,8 @@ export class CoinMarketCapSpider {
     }
 
     private async climb() {
-        let nowAt = new Date();
-        let cmcurl = CryptoSymbol.historicalUrl(this.symbol, new Date(2020, 0, 1), nowAt);
+
+        let cmcurl = CryptoSymbol.historicalUrl(this.symbol, this.startAt, this.endAt);
         await this.sk.driver.get(cmcurl);
         //await driver.findElement(By.name('cmc-date-range-picker')).sendKeys('cheese', Key.ENTER);
         let firstResult = await this.sk.driver.wait(until.elementLocated(By.css('.cmc-table__table-wrapper-outer')), 10000);

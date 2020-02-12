@@ -1,11 +1,15 @@
 {
-  "name": "bzkproxy-api",
-  "version": "0.0.0",
+  "name": "bzk-proxy-api",
+  "version": "0.0.1",
   "description": "BZKProxyAPI",
-  "main": "app.js",
-  "author": {
-    "name": ""
-  },
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "author": "Kirin",
+  "contributors": [
+    {
+      "name": "Andy"
+    }
+  ],
   "scripts": {
     "build": "tsc --build",
     "clean": "tsc --build --clean",
@@ -29,5 +33,20 @@
     "moment": "^2.24.0",
     "selenium-webdriver": "^4.0.0-alpha.5",
     "typescript-string-operations": "^1.3.2"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kirinchen/BZK-Proxy-API.git"
+  },
+  "keywords": [
+    "Auto",
+    "Trade",
+    "Bot",
+    "program trading"
+  ],
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kirinchen/BZK-Proxy-API/issues"
+  },
+  "homepage": "https://github.com/kirinchen/BZK-Proxy-API#readme"
 }
