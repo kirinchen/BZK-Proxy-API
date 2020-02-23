@@ -45,6 +45,9 @@
     <Folder Include="test\" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="comm\CommUtils.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="comm\SeleniumKit.ts" />
     <TypeScriptCompile Include="comm\SeleniumUtils.ts" />
     <TypeScriptCompile Include="ConfigName.ts" />

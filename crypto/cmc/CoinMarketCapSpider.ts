@@ -4,10 +4,12 @@ import { WebDriver, WebElement } from "selenium-webdriver";
 import { Config, ActionT1 } from "bzk";
 import { CMCUtils } from "./CMCUtils";
 import { ZonedDateTime, ZoneId, DateTimeFormatter } from '@js-joda/core'
+import { ConfigNameF, ConfigName } from "../../ConfigName";
+import { CommUtils } from "../../comm/CommUtils";
 const { By, Key, until } = SeleniumKit.getKit();
 
 export class CoinMarketCapSpider {
-    //DATE_FORMATE: DateTimeFormatter = DateTimeFormatter.ofPattern("MMM dd, yyyy");
+    config: Config;
     sk: SeleniumKit;
     symbol: CPSymbol = CPSymbol.BTC;
     private data: Array<CMCQuote> = new Array<CMCQuote>();
@@ -15,6 +17,7 @@ export class CoinMarketCapSpider {
     private endAt: Date = new Date();
 
     constructor(c: Config, cb: CPSymbol) {
+        this.config = c;
         this.symbol = cb;
         this.sk = new SeleniumKit(c);
     }
@@ -49,7 +52,8 @@ export class CoinMarketCapSpider {
         let cmcurl = CryptoSymbol.historicalUrl(this.symbol, this.startAt, this.endAt);
         await this.sk.driver.get(cmcurl);
         //await driver.findElement(By.name('cmc-date-range-picker')).sendKeys('cheese', Key.ENTER);
-        let firstResult = await this.sk.driver.wait(until.elementLocated(By.css('.cmc-table__table-wrapper-outer')), 10000);
+        let timeout = this.config.get(ConfigNameF.path(ConfigName.SeleniumTimeout),50000);
+        let firstResult = await this.sk.driver.wait(until.elementLocated(By.css('.cmc-table__table-wrapper-outer')), timeout);
         let trs = await this.sk.driver.findElements(By.css('.cmc-table-row'));
         console.log("trs size:" + trs.length);
         for (let i = 0; i < trs.length; i++) {
@@ -72,12 +76,13 @@ export class CoinMarketCapSpider {
     private async parseQuote(tds: WebElement[]): Promise<CMCQuote> {
         let od = new Date(await tds[0].getText());
         let d = ZonedDateTime.parse(od.toISOString());
-        let o = parseFloat(await tds[1].getText());
-        let h = parseFloat(await tds[2].getText());
-        let l = parseFloat(await tds[3].getText());
-        let c = parseFloat(await tds[4].getText());
-        let v = parseFloat(await tds[5].getText());
-        let m = parseInt(await tds[6].getText());
+        let ot = await tds[1].getText();
+        let o = CommUtils.parseFinancial(ot);
+        let h = CommUtils.parseFinancial(await tds[2].getText());
+        let l = CommUtils.parseFinancial(await tds[3].getText());
+        let c = CommUtils.parseFinancial(await tds[4].getText());
+        let v = CommUtils.parseFinancial(await tds[5].getText());
+        let m = CommUtils.parseFinancial(await tds[6].getText());
         return {
             date: d,
             open: o,
