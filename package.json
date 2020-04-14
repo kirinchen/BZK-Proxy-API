@@ -1,6 +1,6 @@
 {
   "name": "bzk-proxy-api",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "BZKProxyAPI",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -28,7 +28,7 @@
     "@js-joda/timezone": "^2.2.0",
     "@types/selenium-webdriver": "^4.0.6",
     "bzk": "0.0.7",
-    "chromedriver": "^79.0.2",
+    "chromedriver": "^81.0.0",
     "dateformat": "^3.0.3",
     "moment": "^2.24.0",
     "selenium-webdriver": "^4.0.0-alpha.5",
